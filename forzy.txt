@@ -1,0 +1,23 @@
+  zz=read.table("clipboard",header=T,sep='\t',stringsAsFactors = F)
+  a=colnames(zz)[2]
+  colnames(zz)=c("group","sTREM")
+  addd=zz %>% group_by(group) %>% summarise(med=median(sTREM),min=min(sTREM),max=max(sTREM))
+  addd$group=as.numeric(addd$group)
+  zz$group=as.factor(zz$group)
+  ggplot(zz,aes(x=group,y=sTREM))+
+    geom_jitter(aes(shape=group,fill=group),width = 0.1,height = 0)+
+    scale_shape_manual(values = c(21:24))+
+    scale_y_continuous(a,limits = c(0,200))+
+    scale_x_discrete("",labels=c("1"="non-NEC","2"="NEC-1","3"="NEC-2","4"="NEC-3"))+
+    theme(legend.position = "none")+
+    geom_segment(data=addd,aes(x=group-0.1,y=max,xend=group+0.1,yend=max,color=as.factor(group)))+
+    geom_segment(data=addd,aes(x=group-0.1,y=min,xend=group+0.1,yend=min,color=as.factor(group)))+
+    geom_segment(data=addd,aes(x=group,y=min,xend=group,yend=max,color=as.factor(group)))+
+    geom_segment(data=addd,aes(x=group-0.15,y=med,xend=group+0.15,yend=med,color=as.factor(group)))+
+    geom_text(data=NULL,aes(x=0.7,y=175,label="p<0.05"))
+
+
+
+
+
+ggplot(zz,aes(x=b,y=a))+geom_point(shape=19)+scale_x_continuous("RIP3(pg/g)",limits = c(0,100))+scale_y_continuous("sTREM-1(pg/g)",limits = c(0,150))+geom_text(data=NULL,aes(x=100,y=150,label="r=0.406\np=0.191"))
