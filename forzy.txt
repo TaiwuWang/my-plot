@@ -1,4 +1,4 @@
-  help zy for fuchan this is a useful tool. i can modify it anywhere. this is a good one .
+  help zy for fuchan this is a useful tool. i can modify it anywhere. this is a good one . test it again.
   zz=read.table("clipboard",header=T,sep='\t',stringsAsFactors = F)
   a=colnames(zz)[2]
   colnames(zz)=c("group","sTREM")
