@@ -1,4 +1,4 @@
-  help zy for fuchan
+  help zy for fuchan this is a useful tool.
   zz=read.table("clipboard",header=T,sep='\t',stringsAsFactors = F)
   a=colnames(zz)[2]
   colnames(zz)=c("group","sTREM")
@@ -17,3 +17,4 @@
     geom_segment(data=addd,aes(x=group-0.15,y=med,xend=group+0.15,yend=med,color=as.factor(group)))+
     geom_text(data=NULL,aes(x=0.7,y=175,label="p<0.05"))
 ggplot(zz,aes(x=b,y=a))+geom_point(shape=19)+scale_x_continuous("RIP3(pg/g)",limits = c(0,100))+scale_y_continuous("sTREM-1(pg/g)",limits = c(0,150))+geom_text(data=NULL,aes(x=100,y=150,label="r=0.406\np=0.191"))
+
